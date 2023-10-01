@@ -13,7 +13,7 @@ st.markdown("""
 This app allows you to track your personal goals in an intuitive and visual way
 """)
 
-data = pd.read_csv('https://docs.google.com/spreadsheets/d/1vZbW9ebUqnf-c6JYzt0itvqybiPq31Prd-0Y4Q6F6cU/export?gid=0&format=csv', parse_dates=["Data Inicial","Data Final","Data do Registro"])
+data = pd.read_csv('https://docs.google.com/spreadsheets/d/1vZbW9ebUqnf-c6JYzt0itvqybiPq31Prd-0Y4Q6F6cU/export?gid=0&format=csv', parse_dates=["Data Inicial","Data Final","Data do Registro"], dayfirst=True)
 
 start_date = data['Data Inicial'].values[0]
 end_date = data['Data Final'].values[0]
@@ -68,6 +68,6 @@ ax.plot(x_axis, p(x2), "k--", alpha=0.2)
 
 plt.grid(visible=True, which='minor')
 plt.grid(visible=True, axis='y', linestyle=':')
-plt.show()
+# plt.show()
 
 st.pyplot(fig)
