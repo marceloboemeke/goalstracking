@@ -52,15 +52,15 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
   ])
 
   #calculate equation for trendline
-  x = mdates.date2num(x_axis)
-  z = np.polyfit(x, y_axis, 1)
-  p = np.poly1d(z)
+  # x = mdates.date2num(x_axis)
+  # z = np.polyfit(x, y_axis, 1)
+  # p = np.poly1d(z)
 
-  x_axis = [x_axis[-1]] + [end_date]
-  x2 = mdates.date2num(x_axis)
+  # x_axis = [x_axis[-1]] + [end_date]
+  # x2 = mdates.date2num(x_axis)
 
-  # Add trendline
-  ax.plot(x_axis, p(x2), "k--", alpha=0.2)
+  # # Add trendline
+  # ax.plot(x_axis, p(x2), "k--", alpha=0.2)
 
   plt.grid(visible=True, which='minor')
   plt.grid(visible=True, axis='y', linestyle=':')
