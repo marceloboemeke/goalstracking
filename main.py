@@ -31,7 +31,7 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
   ax.imshow(im, extent=[start_date, end_date, 0, target_value], aspect='auto', alpha=0.6)
 
   fig.figsize = (500,400)
-  ax.plot(x_axis, y_axis, marker='o', markersize=5)
+  ax.plot(x_axis, y_axis, marker='o', markersize=3)
 
   checkpoint_dates = [data['Checkpoint 1'].values[0]] + [data['Checkpoint 2'].values[0]] + [data['Checkpoint 3'].values[0]]
 
