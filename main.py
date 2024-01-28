@@ -30,7 +30,6 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
   im = Image.open(requests.get("https://i.imgur.com/2hL9bGM.png", stream=True).raw)
   ax.imshow(im, extent=[start_date, end_date, 0, target_value], aspect='auto', alpha=0.6)
 
-  fig.figsize = (500,400)
   ax.plot(x_axis, y_axis, marker='o', markersize=5)
 
   checkpoint_dates = [data['Checkpoint 1'].values[0]] + [data['Checkpoint 2'].values[0]] + [data['Checkpoint 3'].values[0]]
@@ -42,6 +41,7 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
   ax.set_xbound(start_date, end_date)
   ax.set_xticks([ start_date, end_date ], minor = False)
   ax.set_xticks(checkpoint_dates, minor = True)
+  plt.autoscale(False)
 
   ax.set_yticks([
     initial_value
@@ -52,18 +52,21 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
   ])
 
   #calculate equation for trendline
-  # x = mdates.date2num(x_axis)
-  # z = np.polyfit(x, y_axis, 1)
-  # p = np.poly1d(z)
+  x = mdates.date2num(x_axis)
+  z = np.polyfit(x, y_axis, 1)
+  p = np.poly1d(z)
 
-  # x_axis = [x_axis[-1]] + [end_date]
-  # x2 = mdates.date2num(x_axis)
+  x_axis = [x_axis[-1]] + [end_date]
+  x2 = mdates.date2num(x_axis)
 
-  # # Add trendline
-  # ax.plot(x_axis, p(x2), "k--", alpha=0.2)
+  # Add trendline
+  ax.plot(x_axis, p(x2), "k--", alpha=0.2)
 
   plt.grid(visible=True, which='minor')
   plt.grid(visible=True, axis='y', linestyle=':')
   # plt.show()
 
   st.pyplot(fig)
+  data["Daily Pages Read"] = data["Valor Atual"].diff().fillna(0)
+  st.subheader("Média de "+measuring_unit+": "+str(data["Daily Pages Read"].median()))
+  st.divider()
