@@ -27,7 +27,7 @@ for data in [y for x, y in data_full.groupby('Objetivo')]:
 
   fig, ax = plt.subplots()
 
-  im = Image.open(requests.get("https://i.imgur.com/2hL9bGM.png", stream=True).raw)
+  im = Image.open("progressrange.png")
   ax.imshow(im, extent=[start_date, end_date, 0, target_value], aspect='auto', alpha=0.6)
 
   ax.plot(x_axis, y_axis, marker='o', markersize=5)
